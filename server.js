@@ -1,25 +1,23 @@
 const path = require('path');
 const express = require('express');
 const exphbs = require('express-handlebars');
-const routes = require('./controllers');
 const sequelize = require('./config/connection');
-const helpers = require('./utils/helpers');
-
-const session = require('express-session');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 
-//
+
+const routes = require('./controllers');
+const helpers = require('./utils/helper');
+
+const session = require('express-session');
+
+//Session
 const sess = {
-    secret: process.env.DB_SECRET,
+    secret: 'Secret Blog',
     cookie: {},
     resave: false,
     saveUninitialized: true,
     store: new SequelizeStore({
-      db: sequelize,
-      //Gonna check it every 10 min
-      checkExpirationInterval: 1000 * 60 * 10, 
-      //Gonna expire each 30 min
-      expiration: 1000 * 60 * 30 
+      db: sequelize
     })
 }
 
@@ -34,7 +32,7 @@ app.set('view engine', 'handlebars');
 
 app.use(session(sess))
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(routes);

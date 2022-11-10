@@ -11,7 +11,7 @@ router.get('/', withAuth, (req, res) => {
         attributes: [
             'id',
             'title',
-            'content',
+            'post_text',
             'created_at'
         ],
         include: [{
@@ -52,7 +52,7 @@ router.get('/edit/:id', withAuth, (req, res) => {
         attributes: [
             'id',
             'title',
-            'content',
+            'post_text',
             'created_at'
         ],
         include: [{
@@ -80,7 +80,7 @@ router.get('/edit/:id', withAuth, (req, res) => {
             plain: true
         });
 
-        res.render('edit-post', {
+        res.render('edit-post-form', {
             post,
             loggedIn: true
         });
@@ -89,13 +89,7 @@ router.get('/edit/:id', withAuth, (req, res) => {
         console.log(err);
         res.status(500).json(err);
     });
-})
-
-router.get('/new', (req, res) => {
-    res.render('add-post', {
-        loggedIn: true
-    })
-})
+});
 
 
 module.exports = router;

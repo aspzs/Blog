@@ -7,36 +7,35 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Tech Blog</title>
-  <link rel="stylesheet" type="text/css" href="/css/style.css">
+  <link rel="stylesheet" href="/public/assets/css/style.css">
 </head>
 
 <body>
     <div class="wrapper">
   <header>
     <h1>
-        <a href="/">Home</a>
+        <a href="/">Tech Blog</a>
         </h1>
           <nav>
             {{#if loggedIn}}
-            <a href="/dashboard">dashboard</a>
+            <a href="/">Homepage</a>
             <button id="logout" class="btn-no-style logout">Logout</button>
             {{else}}
             <a href="/login">Login</a>
             {{/if}}
   </nav>
   </header>
-  <div class="site-row">
-    <div class="site-name">
-        <h1>Tech Blog</h1>
-    </div>
-  </div>
+
   <main>
     {{body}}
   </main>
+  <footer>
+    Thanks :)!
+  </footer>
 </div>
 
 {{#if loggedIn}}
-<script src="/javascript/logout.js"></script>
+<script src="/public/assets/js/logout.js"></script>
 {{/if}}
 </body>
 
